@@ -20,7 +20,12 @@ This project uses Docker Compose to set up a full development environment with a
      docker compose up
 3. Once the services are running, you can access the application at:
    http://localhost:5000/swagger/index.html
-4. The database must contain a base record in the PermissionType table with the following value:
-  ```code
-    Id = 1
-    Description = "Vacation"
+4. The database loads a default record in the PermissionType table with the following value, which is used for creating and modifying permissions:
+     ```code
+       Id = 1
+       Description = "Vacation"
+
+## Architectural diagram
+
+   ![image](https://github.com/user-attachments/assets/da9c2a0e-1d71-44bf-8ef6-66766216d15a)
+
