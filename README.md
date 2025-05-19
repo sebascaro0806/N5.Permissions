@@ -27,5 +27,6 @@ This project uses Docker Compose to set up a full development environment with a
 
 ## Architectural diagram
 
-   ![image](https://github.com/user-attachments/assets/da9c2a0e-1d71-44bf-8ef6-66766216d15a)
+   ![Diagram](https://github.com/user-attachments/assets/b7f30672-4e52-4fdb-b527-e8f99cbd2d5d)
+
 
