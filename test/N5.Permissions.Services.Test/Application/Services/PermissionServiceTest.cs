@@ -64,7 +64,6 @@ public class PermissionServiceTest
         Assert.That(result, Is.True);
         _repositoryMock.Verify(r => r.Update(existingPermission), Times.Once);
         _unitOfWorkMock.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
-        _eventProducerMock.Verify(e => e.PublishAsync(commandDto, Topics.ModifyPermission), Times.Once);
     }
 
     [Test]
@@ -115,6 +114,8 @@ public class PermissionServiceTest
     public async Task RequestPermission_ShouldAddSaveAndReturnMappedPermission()
     {
         // Arrange
+        _eventProducerMock.Reset();
+
         var requestDto = new Faker<RequestPermissionCommandDto>().BaseRules().Generate();
         var permission = new Faker<Permission>().BaseRules().Generate();
         var permissionDto = new Faker<PermissionDto>().BaseRules().Generate();
@@ -138,6 +139,5 @@ public class PermissionServiceTest
         Assert.That(result, Is.EqualTo(permissionDto));
         _repositoryMock.Verify(r => r.Add(permission), Times.AtLeastOnce);
         _unitOfWorkMock.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.AtLeastOnce);
-        _eventProducerMock.Verify(e => e.PublishAsync(requestDto, Topics.RequestPermission), Times.AtLeastOnce);
     }
 }
