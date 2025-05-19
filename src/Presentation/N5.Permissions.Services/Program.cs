@@ -1,15 +1,18 @@
-using N5.Permissions.Api.HostedServices;
-using N5.Permissions.Application;
-using N5.Permissions.Infraestructure.Messaging.Kafka;
-using N5.Permissions.Infraestructure.Persistence.Sql;
+﻿
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Exceptions;
+using N5.Permissions.Application;
+using N5.Permissions.Infraestructure.Messaging.Kafka;
+using N5.Permissions.Infraestructure.Persistence.Elasticsearch;
+using N5.Permissions.Services.Handlers;
 
 try
 {
     Log.Logger = new LoggerConfiguration()
         .MinimumLevel.Verbose()
-        .Enrich.WithProperty("ApplicationContext", "N5.Permissions.Api")
+        .Enrich.WithProperty("ApplicationContext", "N5.Permissions.Services")
         .Enrich.WithProperty("Environment", Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"))
         .Enrich.WithExceptionDetails()
         .Enrich.FromLogContext()
@@ -17,29 +20,16 @@ try
         .CreateLogger();
 
     var builder = WebApplication.CreateBuilder(args);
-    builder.Services.AddOpenApi();
     builder.Host.UseSerilog();
 
     builder.Services
         .AddOptions()
         .AddApplication()
-        .AddSqlPersistence(builder.Configuration)
-        .AddKafkaMessaging(builder.Configuration)
-        .AddHostedService<SeedHostedService>();
-    
-    builder.Services.AddControllers();
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+        .AddTransient<ElasticsearchIndexerHandler>()
+        .AddElasticSearch(builder.Configuration)
+        .AddKafkaMessaging(builder.Configuration);
 
     var app = builder.Build();
-
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    
-    app.MapControllers();
-    app.UseHttpsRedirection();
-
-
     app.Run();
 }
 catch (Exception ex)

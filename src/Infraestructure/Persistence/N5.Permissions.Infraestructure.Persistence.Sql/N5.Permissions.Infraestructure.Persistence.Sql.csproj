@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\N5.Permissions.Domain\N5.Permissions.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalVisibleTo Include="N5.Permissions.Services.Test" />
+    <InternalVisibleTo Include="N5.Permissions.Api" />
+  </ItemGroup>
+
+</Project>

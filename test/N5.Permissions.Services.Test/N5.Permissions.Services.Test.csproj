@@ -11,9 +11,20 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="Moq.EntityFrameworkCore" Version="9.0.0.1" />
     <PackageReference Include="NUnit" Version="4.2.2" />
     <PackageReference Include="NUnit.Analyzers" Version="4.4.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Application\N5.Permissions.Application\N5.Permissions.Application.csproj" />
+    <ProjectReference Include="..\..\src\Domain\N5.Permissions.Domain\N5.Permissions.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Infraestructure\Messaging\N5.Permissions.Infraestructure.Messaging.Kafka\N5.Permissions.Infraestructure.Messaging.Kafka.csproj" />
+    <ProjectReference Include="..\..\src\Infraestructure\Persistence\N5.Permissions.Infraestructure.Persistence.Elasticsearch\N5.Permissions.Infraestructure.Persistence.Elasticsearch.csproj" />
+    <ProjectReference Include="..\..\src\Infraestructure\Persistence\N5.Permissions.Infraestructure.Persistence.Sql\N5.Permissions.Infraestructure.Persistence.Sql.csproj" />
+    <ProjectReference Include="..\N5.Permissions.Common.Test\N5.Permissions.Common.Test.csproj" />
   </ItemGroup>
 
   <ItemGroup>

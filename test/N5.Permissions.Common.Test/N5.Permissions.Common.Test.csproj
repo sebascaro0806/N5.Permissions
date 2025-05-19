@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalVisibleTo Include="N5.Permissions.Services.Test" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Domain\N5.Permissions.Domain\N5.Permissions.Domain.csproj" />
+  </ItemGroup>
 </Project>

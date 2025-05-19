@@ -1,9 +1,9 @@
-namespace N5.Perimissions.Domain.Entities;
+namespace N5.Permissions.Domain.Entities;
 
 /// <summary>
 /// Represents the type of permission.
 /// </summary>
-public class Permissions
+public class Permission
 {
     /// <summary>
     /// Gets or sets the unique identifier for the permission.
