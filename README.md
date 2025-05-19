@@ -10,11 +10,6 @@ This project uses Docker Compose to set up a full development environment with a
 ## How to Run the Project
 
 1. Clone this repository:
-
-   ```bash
-   git clone https://github.com/your-user/your-project.git
-   cd your-project
-
 2. Start the services using Docker Compose:
      ```bash
      docker compose up
